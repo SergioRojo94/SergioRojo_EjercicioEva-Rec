@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +6,56 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    /<!--Estilo fragmentResult -->
+    <style name="resultado">
+        <item name="android:layout_width">@dimen/largo</item>
+        <item name="android:layout_height" tools:ignore="DuplicateDefinition">@dimen/largo</item>
+        <item name="android:scaleType"> fitCenter</item>
+    </style>
+    <style name="principal">
+
+    </style>
+    <style name="niño" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType"> fitCenter</item>
+        <item name="android:background">@color/colorBlue</item>
+    </style>
+    <style name="niña" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType"> fitCenter</item>
+        <item name="android:background">@color/colorPink</item>
+    </style>
+    <style name="imagen" parent="AppTheme">
+        <item name="android:layout_width">169dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+    <style name="titulo" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/baloo_da</item>
+        <item name="android:textColor">@color/colorBrown</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+    <style name="titulo2" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/baloo_da</item>
+        <item name="android:textColor">@color/colorBrown</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+    <style name="titulo3" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/baloo_da</item>
+        <item name="android:textColor">@color/colorYellow</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
 </resources>
