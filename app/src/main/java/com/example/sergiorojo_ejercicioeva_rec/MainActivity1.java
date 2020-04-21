@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * @author Sergio Rojo
+ * @version
+ */
 public class MainActivity1 extends AppCompatActivity {
 
     ImageButton btnNinio;
@@ -18,6 +22,7 @@ public class MainActivity1 extends AppCompatActivity {
 
         btnNinia=(ImageButton) findViewById(R.id.ibtnNinia);
         btnNinio=(ImageButton) findViewById(R.id.ibtnNinio);
+
 
         //método selección niña, lleva a activity_ninia
         btnNinia.setOnClickListener(new View.OnClickListener() {
