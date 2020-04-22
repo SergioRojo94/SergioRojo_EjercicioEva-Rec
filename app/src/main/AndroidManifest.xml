@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivityNinia"  android:theme="@style/niña"></activity>
         <activity android:name=".MainActivityNinio" android:theme="@style/niño"></activity>
         <activity android:name=".MainActivity1"
             tools:ignore="DuplicateActivity">

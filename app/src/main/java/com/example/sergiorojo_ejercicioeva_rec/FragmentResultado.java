@@ -12,6 +12,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,24 +27,21 @@ import android.widget.TextView;
 public class FragmentResultado extends Fragment {
 
 
-    //Soporte para las animaciones
+    /**
+     * Soporte para las animaciones
+     */
     public ObjectAnimator animatorVictoria;
     public ObjectAnimator animatorDerrota;
     public ObjectAnimator animatorEmpate;
 
-   //Button btnPiedra, btnPapel, btnTijera;
+
 
     private static final String DIBUJO = "dibujo";
     private static final String RESUL = "resul";
-    ImageView imageFragment;
+    ImageView imageFragment, imageEmoji;
     TextView texto;
     String dibujo, resul;
     Fragment frag;
-
-
-
-  /*  int sonidoPapel, sonidoPiedra, sonidoTijeras;
-    SoundPool tonos;*/
 
     MediaPlayer mp;
 
@@ -54,68 +53,30 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
     dibujo = getArguments().getString(DIBUJO);
     resul= getArguments().getString(RESUL);
 }
-   // @SuppressLint("WrongViewCast")
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
        View vista = inflater.inflate(R.layout.fragment_resultado, container, false);
         imageFragment=vista.findViewById(R.id.imageFragment);
+        imageEmoji=vista.findViewById(R.id.imageEmoji);
         texto = vista.findViewById(R.id.textView);
         frag = this;
 
         MostrarDatos(dibujo,vista);
         ColocarResultado(resul);
-
-       // btnPiedra=(Button)vista.findViewById(R.id.btnPiedra);
-       // btnPapel=(Button)vista.findViewById(R.id.btnPapel);
-       // btnTijera=(Button)vista.findViewById(R.id.btnTijera);
-
-        //sonidos
-      /* SoundPool.Builder constructor = new SoundPool.Builder();
-        constructor.setMaxStreams(3);
-        tonos = constructor.build();
-
-        sonidoPapel = tonos.load(vista.getContext(), sonidoPapel, 1);
-        sonidoPiedra = tonos.load(vista.getContext(), sonidoPiedra, 1);
-        sonidoTijeras = tonos.load(vista.getContext(), sonidoTijeras, 1);*/
-
-
-
-
-
-
-
-      // btnPapel.setEnabled(false);
-        //btnPiedra.setEnabled(false);
-       // btnTijera.setEnabled(false);
-
-
-
-
+        ColocarEmoji(resul);
 
         return vista;
     }
 
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_resultado, container, false);
-
-        imgBtnOk = view.findViewById(R.id.imgBtnOk);
-        f = this;
-
-         imgBtnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JuegoActivity.frgManager.beginTransaction().remove(f).commit();
-            }
-        });
-
-         return view;
-    }*/
-
+    /**
+     * Método para instanciar el fragment pasándole los parámetros correspondientes
+     * @param param1
+     * @param param2
+     * @return fragment
+     */
     public static FragmentResultado newInstance(String param1, String param2) {
         FragmentResultado fragment = new FragmentResultado();
         Bundle args = new Bundle();
@@ -140,17 +101,20 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
             case "Tijeras":
                 MediaPlayer.create(vista.getContext(),R.raw.sonidotijeras).start();
                 break;
+            case "El dispositivo está eligiendo":
+                MediaPlayer.create(vista.getContext(),R.raw.unmomento).start();
+                break;
         }
     }
 
-   /* mppapel =
-    mppiedra =
-    mptijeras = */
+
     /**
-     *
+     *Método que coloca la animación correspondiente a victoria, derrota, empate (o si la máquina necesita un poco más de tiempo) y la anima.
      * @param resul
      */
     public void ColocarResultado(String resul){
+        Animation animacion = AnimationUtils.loadAnimation(getContext(),R.anim.animacion);
+        imageFragment.startAnimation(animacion);
         switch (resul){
             case "Has ganado":
                 imageFragment.setImageResource(R.drawable.victoria);
@@ -160,6 +124,31 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
                 break;
             case "Empate":
                 imageFragment.setImageResource(R.drawable.empate);
+                break;
+            case "El dispositivo está eligiendo":
+                imageFragment.setImageResource(R.drawable.loading);
+                break;
+        }
+
+    }
+
+    /**
+     * Como quizá haya niños y niñas que no sepan leer, se adjuntan unos emoticonos que representan alegría (felicidad), tristeza (derrota) o impasibilidad(empate)
+     * @param resul
+     */
+    public void ColocarEmoji(String resul){
+        switch (resul){
+            case "Has ganado":
+                imageEmoji.setImageResource(R.drawable.feliz);
+                break;
+            case "Has perdido":
+                imageEmoji.setImageResource(R.drawable.triste);
+                break;
+            case "Empate":
+                imageEmoji.setImageResource(R.drawable.indiferente);
+                break;
+            case "El dispositivo está eligiendo":
+                imageEmoji.setImageResource(R.drawable.indiferente);
                 break;
         }
 

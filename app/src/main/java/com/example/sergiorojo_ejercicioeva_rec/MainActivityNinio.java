@@ -81,7 +81,6 @@ public class MainActivityNinio extends AppCompatActivity {
                 txtMarcador.setText("Jugador: "+Integer.toString(JugadorPuntuacion)+"CPU: "+Integer.toString(CPUPuntuacion) + " ||  Partidas Jugadas: " +Integer.toString(partidasJugadas));
                 txtMarcador2.setText("Racha de victorias actual: " +Integer.toString(rachaVictoria)+ " || Mejor racha: "+Integer.toString(mejorRacha));
                 habilitarBtn(true);
-
             }
         });
 
@@ -97,7 +96,6 @@ public class MainActivityNinio extends AppCompatActivity {
                 txtMarcador.setText("Jugador: "+Integer.toString(JugadorPuntuacion)+"CPU: "+Integer.toString(CPUPuntuacion) + " ||  Partidas Jugadas: " +Integer.toString(partidasJugadas));
                 txtMarcador2.setText("Racha de victorias actual: " +Integer.toString(rachaVictoria)+ " || Mejor racha: "+Integer.toString(mejorRacha));
                 habilitarBtn(true);
-
             }
         });
 
@@ -119,19 +117,16 @@ public class MainActivityNinio extends AppCompatActivity {
 
             }
         });
-
     }
 
     /**
-     * Método de control dle juego, instanciamos los componentes y asociamos los botones que pulsa a un String (piedra, papel, tijera)
+     * Método de control del juego, instanciamos los componentes y asociamos los botones que pulsa a un String (piedra, papel, tijera)
      *Contiene else-if calculando todas las posibilidades de resultado (9 en este caso).  Vamos incrementando el número de derrotas y victorias, así como el número de victorias de la CPU
      * El fragmento declarado como resultado llama a los métodos 'Mostrartexto' y 'ColocarResultados', donde se les pasa como parámetro un String "texto" con el resultado
      *
      * @param elegido
      * @return String texto
      */
-
-
 
     public void turno (String elegido){
         String dispositivo_seleccion="";
@@ -143,7 +138,7 @@ public class MainActivityNinio extends AppCompatActivity {
         Animation animacion = AnimationUtils.loadAnimation(this,R.anim.animacion);
         ImgJugador.startAnimation(animacion);
 
-        int dispos_numero=r.nextInt(3) + 1; //3 es es el número de imágenes, el 1 es para aleatorio.
+        int dispos_numero=(int)(Math.random() * 3) + 1;
 
         if (dispos_numero==1){
             dispositivo_seleccion="Piedra";
@@ -235,6 +230,10 @@ public class MainActivityNinio extends AppCompatActivity {
         }, 2500);
     }
 
+    /**
+     * Método para cambiar el background según pulsemos el botón de chico o chica
+     * @param gen
+     */
     public void genero(String gen){
         if (gen.equals("chico")){
             lay.setBackgroundColor(Color.parseColor("#54A8FB"));
@@ -244,6 +243,10 @@ public class MainActivityNinio extends AppCompatActivity {
         }
     }
 
+    /**
+     * método que se usa para habilitar / deshabilitar los botónes al aparecer el fragment
+     * @param bloqueo
+     */
     public void habilitarBtn(boolean bloqueo){
         if (bloqueo == true){
             btnPapel.setEnabled(false);
