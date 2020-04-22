@@ -96,7 +96,6 @@
         android:layout_height="56dp"
         android:layout_below="@id/txtMarcador"
         android:background="@drawable/piedra"
-        android:onClick="Piedra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
@@ -110,7 +109,6 @@
         android:layout_height="52dp"
         android:layout_below="@id/txtMarcador"
         android:background="@drawable/papel"
-        android:onClick="Papel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -124,13 +122,14 @@
         android:layout_height="48dp"
         android:layout_below="@id/txtMarcador"
         android:background="@drawable/tijeras"
-        android:onClick="Tijeras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.909" />
+
+
 
 
 

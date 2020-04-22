@@ -15,6 +15,7 @@ public class MainActivity1 extends AppCompatActivity {
 
     ImageButton btnNinio;
     ImageButton btnNinia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +29,19 @@ public class MainActivity1 extends AppCompatActivity {
         btnNinia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getApplicationContext(), MainActivityNinia.class);
+               Intent intent = new Intent(getApplicationContext(), MainActivityNinio.class);
                startActivity(intent);
+               setTheme(R.style.niño);
             }
         });
+
         //método selección niña, lleva a activity_ninia
         btnNinio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivityNinio.class);
                 startActivity(intent);
+                setTheme(R.style.niña);
             }
         });
     }

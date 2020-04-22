@@ -30,26 +30,29 @@ public class FragmentResultado extends Fragment {
     public ObjectAnimator animatorDerrota;
     public ObjectAnimator animatorEmpate;
 
+   //Button btnPiedra, btnPapel, btnTijera;
+
     private static final String DIBUJO = "dibujo";
+    private static final String RESUL = "resul";
     ImageView imageFragment;
     TextView texto;
-    String dibujo;
+    String dibujo, resul;
     Fragment frag;
-    ImageButton btnVolver;
 
 
-    int sonidoPapel, sonidoPiedra, sonidoTijeras;
-    SoundPool tonos;
 
-    MediaPlayer mppiedra;
-    MediaPlayer mppapel;
-    MediaPlayer mptijeras;
+  /*  int sonidoPapel, sonidoPiedra, sonidoTijeras;
+    SoundPool tonos;*/
+
+    MediaPlayer mp;
+
 
 
 @Override
 public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     dibujo = getArguments().getString(DIBUJO);
+    resul= getArguments().getString(RESUL);
 }
    // @SuppressLint("WrongViewCast")
     @Override
@@ -60,9 +63,13 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
         imageFragment=vista.findViewById(R.id.imageFragment);
         texto = vista.findViewById(R.id.textView);
         frag = this;
-        btnVolver =(ImageButton)vista.findViewById(R.id.btnVolver);
-        MostrarDatos(dibujo);
-        ColocarResultado(dibujo);
+
+        MostrarDatos(dibujo,vista);
+        ColocarResultado(resul);
+
+       // btnPiedra=(Button)vista.findViewById(R.id.btnPiedra);
+       // btnPapel=(Button)vista.findViewById(R.id.btnPapel);
+       // btnTijera=(Button)vista.findViewById(R.id.btnTijera);
 
         //sonidos
       /* SoundPool.Builder constructor = new SoundPool.Builder();
@@ -73,23 +80,19 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
         sonidoPiedra = tonos.load(vista.getContext(), sonidoPiedra, 1);
         sonidoTijeras = tonos.load(vista.getContext(), sonidoTijeras, 1);*/
 
-        mppapel = MediaPlayer.create(vista.getContext(),R.raw.sonidopapel);
-        mppiedra = MediaPlayer.create(vista.getContext(),R.raw.sonidopiedra);
-        mptijeras = MediaPlayer.create(vista.getContext(),R.raw.sonidotijeras);
-
-        mppiedra.start();
-        mppapel.start();
-        mptijeras.start();
 
 
 
 
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivityNinio.frgManager.beginTransaction().remove(frag).commit();
-            }
-        });
+
+
+      // btnPapel.setEnabled(false);
+        //btnPiedra.setEnabled(false);
+       // btnTijera.setEnabled(false);
+
+
+
+
 
         return vista;
     }
@@ -113,10 +116,11 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
          return view;
     }*/
 
-    public static FragmentResultado newInstance(String param1) {
+    public static FragmentResultado newInstance(String param1, String param2) {
         FragmentResultado fragment = new FragmentResultado();
         Bundle args = new Bundle();
         args.putString(DIBUJO, param1);
+        args.putString(RESUL, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -124,10 +128,24 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
      * Muestra el resultado del juego en forma de String
      * @param datos
      */
-    public void MostrarDatos(String datos){
+    public void MostrarDatos(String datos, View vista){
         texto.setText(datos);
+        switch (datos){
+            case "Piedra":
+                MediaPlayer.create(vista.getContext(),R.raw.sonidopiedra).start();
+                break;
+            case "Papel":
+                MediaPlayer.create(vista.getContext(),R.raw.sonidopapel).start();
+                break;
+            case "Tijeras":
+                MediaPlayer.create(vista.getContext(),R.raw.sonidotijeras).start();
+                break;
+        }
     }
 
+   /* mppapel =
+    mppiedra =
+    mptijeras = */
     /**
      *
      * @param resul
@@ -146,4 +164,6 @@ public void onCreate(@Nullable Bundle savedInstanceState) {
         }
 
     }
+
+
 }
