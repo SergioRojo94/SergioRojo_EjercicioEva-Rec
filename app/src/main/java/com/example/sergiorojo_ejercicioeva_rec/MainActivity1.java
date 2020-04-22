@@ -24,14 +24,15 @@ public class MainActivity1 extends AppCompatActivity {
         btnNinia=(ImageButton) findViewById(R.id.ibtnNinia);
         btnNinio=(ImageButton) findViewById(R.id.ibtnNinio);
 
-
+//getApplicationContext()
         //método selección niña, lleva a activity_ninia
         btnNinia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getApplicationContext(), MainActivityNinio.class);
-               startActivity(intent);
-               setTheme(R.style.niño);
+                Intent intent = new Intent(MainActivity1.this, MainActivityNinio.class);
+                intent.putExtra("genero", "chica");
+                startActivity(intent);
+
             }
         });
 
@@ -40,9 +41,11 @@ public class MainActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivityNinio.class);
+                intent.putExtra("genero", "chico");
                 startActivity(intent);
-                setTheme(R.style.niña);
+
             }
         });
     }
 }
+

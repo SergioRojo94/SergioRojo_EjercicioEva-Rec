@@ -1,8 +1,12 @@
 package com.example.sergiorojo_ejercicioeva_rec;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.text.Layout;
 
 import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
@@ -10,6 +14,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Layout;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -36,7 +41,8 @@ public class MainActivityNinio extends AppCompatActivity {
     int rachaVictoria=0;
     int mejorRacha=0;
     boolean victoria = false;
-
+    ConstraintLayout lay;
+    String sexoo;
 
     private Fragment  resultado;
     public static FragmentManager frgManager;
@@ -56,6 +62,11 @@ public class MainActivityNinio extends AppCompatActivity {
         ImgJugador=(ImageView)findViewById(R.id.ImgJugador);
         ImgCPU=(ImageView)findViewById(R.id.ImgCPU);
 
+        lay =(ConstraintLayout)findViewById(R.id.layoutid);
+
+        sexoo = getIntent().getStringExtra("genero");
+
+        genero(sexoo);
 
         /**
          * método void onClick para la piedra
@@ -224,6 +235,14 @@ public class MainActivityNinio extends AppCompatActivity {
         }, 2500);
     }
 
+    public void genero(String gen){
+        if (gen.equals("chico")){
+            lay.setBackgroundColor(Color.parseColor("#54A8FB"));
+        }
+        else{
+            lay.setBackgroundColor(Color.parseColor("#ff0080"));
+        }
+    }
 
     public void habilitarBtn(boolean bloqueo){
         if (bloqueo == true){
